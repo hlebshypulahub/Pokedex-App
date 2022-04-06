@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import { useSelector, useDispatch, RootStateOrAny } from "react-redux";
+import CardsArea from "./components/CardsArea";
+import { changeTheme } from "./redux/themeActions";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const { theme } = useSelector((state: RootStateOrAny) => state);
+    const dispatch = useDispatch();
+
+    return (
+        <div className={`App ${theme ? "light-theme" : "dark-theme"}`}>
+            <div
+                className={`App-header ${theme ? "light-theme" : "dark-theme"}`}
+            >
+                Pokedex
+            </div>
+
+            <div className="btn">
+                <button onClick={() => dispatch(changeTheme())}>
+                    {theme ? "Go Dark!" : "Go Light!"}
+                </button>
+            </div>
+
+            <CardsArea />
+
+            <div
+                className={`App-footer ${theme ? "light-theme" : "dark-theme"}`}
+            >
+                <div className="footer-div">Hleb Shypula © 2022</div>
+            </div>
+        </div>
+    );
 }
 
 export default App;
