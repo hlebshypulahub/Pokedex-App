@@ -1,45 +1,49 @@
-import React, { Component } from "react";
+import React, { Component, memo } from "react";
 
 import Poke from "../interfaces/Poke";
 
 import "./Card.scss";
 
-export default class Card extends Component<
-    { poke: Poke },
-    {
-        poke: Poke;
-    }
-> {
-    state = {
-        poke: this.props.poke,
-    };
+const Card = memo(
+    class Card extends Component<
+        { poke: Poke },
+        {
+            poke: Poke;
+        }
+    > {
+        state = {
+            poke: this.props.poke,
+        };
 
-    render() {
-        const { name, type, sprite, weight, height } = this.state.poke;
+        render() {
+            const { name, type, sprite, weight, height } = this.state.poke;
 
-        return (
-            <div className="CardGrid Card">
-                <div>
+            return (
+                <div className="CardGrid Card">
                     <div>
-                        Name: <span>{name}</span>
-                    </div>
-                    <div>
-                        Type: <span>{type}</span>
-                    </div>
-                    <div className="add-info">
                         <div>
-                            Height: <span>{height}</span>
+                            Name: <span>{name}</span>
                         </div>
                         <div>
-                            Weight: <span>{weight}</span>
+                            Type: <span>{type}</span>
+                        </div>
+                        <div className="add-info">
+                            <div>
+                                Height: <span>{height}</span>
+                            </div>
+                            <div>
+                                Weight: <span>{weight}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div>
-                    <img src={sprite} alt={name} />
+                    <div>
+                        <img src={sprite} alt={name} />
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }
     }
-}
+);
+
+export default Card;
