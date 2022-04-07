@@ -1,4 +1,4 @@
-## Tiny React App with TypeScript. Using statefull components and redux.
+## Tiny React App with TypeScript. Using stateful components and redux.
 
 Made for this [TASK](Task.pdf "TASK").
 
